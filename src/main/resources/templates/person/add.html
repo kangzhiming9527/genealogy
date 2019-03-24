@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<link th:href="@{/css/city/style.css}" rel="stylesheet" type="text/css" />-->
+    <title>人员新增</title>
+</head>
+<body>
+<form action="/person/save" method="post">
+    <input type="hidden" name="pid" th:value="${pid}">
+    <label for="name">姓名：</label>
+    <input type="text" id="name" name="name" /><br/>
+    <label for="sex">性别：</label>
+    <select id="sex" name="sex" >
+        <option th:value="0">男</option>
+        <option th:value="1">女</option>
+    </select>
+    <br/>
+    <label for="birthday">生日：</label>
+    <input type="date" id="birthday" name="birthday" value="1980-01-01"/><br/>
+    <label for="birthday">籍贯：</label>
+    <!--省份选择-->
+    <select id="prov" name="province" onchange="showCity(this)">
+        <option>=请选择省份=</option>
+    </select>
+    <!--城市选择-->
+    <select id="city" name="city" onchange="showCountry(this)">
+        <option>=请选择城市=</option>
+    </select>
+    <!--县区选择-->
+    <select id="country" name="county" onchange="selecCountry(this)">
+        <option>=请选择县区=</option>
+    </select>
+    <br/>
+    <label for="phone">手机：</label>
+    <input type="text" id="phone" name="phone" /><br/>
+    <label for="remarks">备注：</label>
+    <input type="text" id="remarks" name="remarks" /><br/>
+    <input type="submit" value="提交">
+</form>
+<!--<script th:replace="fragscript :: outerJS"></script>-->
+<script type="text/javascript" th:src="@{/js/city/city.js}"></script>
+<script type="text/javascript" th:src="@{/js/city/method.js}"></script>
+</body>
+</html>

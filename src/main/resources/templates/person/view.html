@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link th:href="@{/css/person/view.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--
+We will create a family tree using just CSS(3)
+The markup will be simple nested lists
+-->
+<div class="tree" id="genealogy_view">
+    <ul>
+        <li>
+            <a href="#">爷爷</a>
+            <ul>
+                <li>
+                    <a href="#">大伯</a>
+                    <ul>
+                        <li>
+                            <a href="#">堂哥</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">父亲</a>
+                    <ul>
+                        <li><a href="#">哥哥</a></li>
+                        <li>
+                            <a href="#">我</a>
+                            <ul>
+                                <li>
+                                    <a href="#">第一个孩子</a>
+                                </li>
+                                <li>
+                                    <a href="#">第二个孩子</a>
+                                </li>
+                                <li>
+                                    <a href="#">第三个孩子</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">弟弟</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script th:inline="javascript">
+    var tree = [[${tree}]];
+    // console.log(tree);
+</script>
+<script th:src="@{/js/jquery-1.9.1.min.js}"></script>
+<script th:src="@{/js/person/view.js}"></script>
+</body>
+</html>

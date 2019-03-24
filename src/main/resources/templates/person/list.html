@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>类别列表</title>
+    <style>
+        table, th, td {
+            border: 1px solid green;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-1111111111111111
+<a th:if="${page.totalPages==0}" th:href="@{/person/add}">新增</a>
+<table>
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>生日</th>
+        <th>年龄</th>
+        <!--<th>辈分</th>-->
+        <th>备注</th>
+        <th>操&nbsp;&nbsp;作</th>
+    </tr>
+    <!--不分页遍历-->
+    <!--<tr th:each="item : ${list}">-->
+    <!--分页遍历-->
+    <tr th:each="item : ${page.content}">
+        <td th:text="${item.id}">编号</td>
+        <td th:text="${item.name}">姓名</td>
+        <td th:text="${item.sexStr}">性别</td>
+        <td th:text="${#dates.format(item.birthday, 'yyyy-MM-dd')}">生日</td>
+        <td th:text="${item.age}">年龄</td>
+        <!--<td th:text="${item.id}">辈分</td>-->
+        <td th:text="${item.remarks}">备注</td>
+        <td>
+            <!--<a th:href="@{/categoryedit(id=${item.id})}">编辑</a>&nbsp;&nbsp;-->
+            <!--<a th:href="@{/categorydelete(id=${item.id})}">删除</a>-->
+        </td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{/person/list(start=0)}">[首页]</a>&nbsp;&nbsp;
+    <a th:if="${not page.isFirst()}" th:href="@{/person/list(start=${page.number-1})}">[上页]</a>&nbsp;&nbsp;
+    <a th:if="${not page.isLast()}" th:href="@{/person/list(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
+    <a th:href="@{/person/list(start=${page.totalPages-1})}">[末页]</a>
+</div>
 </body>
 </html>
